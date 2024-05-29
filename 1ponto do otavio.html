@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bingo</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        text-align: center;
+    }
+    table {
+        border-collapse: collapse;
+        width: 400px;
+        border: 2px solid #333;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #333;
+        padding: 10px;
+        font-size: 20px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <button class="button" onclick="gerarTabela()">Gerar Tabela</button>
+
+    <table id="tabelaBingo">
+        <thead>
+            
+        </thead>
+        <tbody>
+            <tr id="linha1"></tr>
+            <tr id="linha2"></tr>
+            <tr id="linha3"></tr>
+            <tr id="linha4"></tr>
+            <tr id="linha5"></tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function gerarTabela() {
+    var tabela = document.getElementById("tabelaBingo");
+    tabela.innerHTML = '';
+
+    for (var i = 0; i < 5; i++) {
+        var row = tabela.insertRow(i);
+        for (var j = 0; j < 5; j++) {
+            var cell = row.insertCell(j);
+            if (i === 2 && j === 2) {
+                cell.textContent = "BINGO";
+                cell.style.fontWeight = "bold";
+            } else {
+                cell.textContent = gerarNumero();
+            }
+        }
+    }
+}
+
+function gerarNumero() {
+    return Math.floor(Math.random() * 99) + 1;
+}
+</script>
+
+</body>
+</html>
